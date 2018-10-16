@@ -18,7 +18,12 @@ class CreateNoticeTable extends Migration
             $table->string('title')->unique();
             $table->longText('description');
             $table->string('image', 100);
+            $table->string('user', 15);
             $table->timestamps();
+
+            $table->foreign('user')
+                ->references('user')->on('users')
+                ->onDelete('cascade');
         });
     }
 

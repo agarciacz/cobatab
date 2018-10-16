@@ -71,7 +71,13 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="" class="btn btn-default btn-flat">Salir</a>
+                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                                    onclick="event.preventDefault(); document.getElementById('logout').submit();">
+                                        Salir
+                                    </a>
+                                    <form id="logout" action="{{ route('logout') }}" method="post" style="display: none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </li>
                         </ul>
@@ -101,7 +107,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class=""><a href="{{ route('view_create_notice') }}"><i class="fa fa-circle-o"></i>Crear</a></li>
-                        <li class=""><a href="#"><i class="fa fa-circle-o"></i>Ver</a></li>
+                        <li class=""><a href="{{ route('view_list_notice') }}"><i class="fa fa-circle-o"></i>Ver</a></li>
                         <li class=""><a href="#"><i class="fa fa-circle-o"></i>Autorizar</a></li>
                     </ul>
                 </li>

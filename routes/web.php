@@ -22,4 +22,5 @@ Route::get('/admin/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/noticia/crear', 'NoticeController@create')->name('view_create_notice');
     Route::get('/admin/noticia/lista', 'NoticeController@listnotice')->name('view_list_notice');
+    Route::post('/admin/noticia/created', 'NoticeController@save_notice')->name('form_created_notice');
 });

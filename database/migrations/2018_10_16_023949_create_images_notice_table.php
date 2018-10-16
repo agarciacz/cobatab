@@ -18,8 +18,6 @@ class CreateImagesNoticeTable extends Migration
             $table->unsignedInteger('notice');
             $table->string('image');
             $table->string('image_title')->nullable();
-            $table->date('start_date_publication');
-            $table->date('end_date_publication');
             $table->timestamps();
 
             $table->foreign('notice')

@@ -20,6 +20,8 @@ class CreateNoticeTable extends Migration
             $table->longText('description');
             $table->string('cover_image', 100);
             $table->string('user', 15);
+            $table->date('start_date_publication');
+            $table->date('end_date_publication');
             $table->timestamps();
 
             $table->foreign('user')

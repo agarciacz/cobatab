@@ -16,8 +16,9 @@ class CreateNoticeTable extends Migration
         Schema::create('notices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
+            $table->string('subtitle');
             $table->longText('description');
-            $table->string('image', 100);
+            $table->string('cover_image', 100);
             $table->string('user', 15);
             $table->timestamps();
 

@@ -17,4 +17,19 @@ class Notice extends Model
     protected $fillable = [
         'title', 'description', 'image'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user');
+    }
+
+    public function notice_is_authorized()
+    {
+        return $this->hasMany('App\NoticeIsAuthorized');
+    }
+
+    public function image_notice()
+    {
+        return $this->hasMany('App\ImageNotice');
+    }
 }

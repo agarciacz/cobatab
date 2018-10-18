@@ -8,19 +8,13 @@ class Notice extends Model
 {
     protected $table = 'notices';
 
-    //Relacion de uno a muchos
-    //Un fabricante a muchos productos
-    /*public function is_authorized(){
-        return $this->hasMany('App\Proveedor');
-    }*/
-
     protected $fillable = [
         'title', 'description', 'image'
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\User', 'user');
+        return $this->belongsTo('App\User', 'user', 'user');
     }
 
     public function notice_is_authorized()

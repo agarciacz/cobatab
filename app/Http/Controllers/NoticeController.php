@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Notice;
 use App\ImageNotice;
@@ -11,7 +13,13 @@ class NoticeController extends Controller
 {
     public function listnotice()
     {
-        return view('notice.listnotice');
+        $notices = Notice::orderBy('created_at','asc')->get();
+
+        $queries = array(
+            'notices' => $notices,
+        );
+
+        return view('notice.listnotice', $queries);
     }
 
     public function create()
@@ -50,7 +58,7 @@ class NoticeController extends Controller
 
         $images = $request->file('image');
         if ($images) {
-            foreach ($images as $image){
+            foreach ($images as $image) {
                 $images_path = time() . $image->getClientOriginalName();
                 \Storage::disk('images_notices')->put($images_path, \File::get($image));
                 //$notice->cover_image = $images_path;
@@ -70,5 +78,11 @@ class NoticeController extends Controller
             'notice' => $id_notice->id,
             'image' => $image
         ]);
+    }
+
+    public function getImages($filename)
+    {
+        $file = Storage::disk('images_notices')->get($filename);
+        return new Response($file, 200);
     }
 }

@@ -85,4 +85,17 @@ class NoticeController extends Controller
         $file = Storage::disk('images_notices')->get($filename);
         return new Response($file, 200);
     }
+
+    public function authorized_notice($title_notice)
+    {
+        $notices = Notice::where('title', '=', $title_notice)->firstOrFail();
+        $images_notices = ImageNotice::where('notice', '=', $notices->id)->get();
+
+        $queries = array(
+            'notice'=>$notices,
+            'images' => $images_notices
+        );
+
+        return view('notice.authorized_notice', $queries);
+    }
 }

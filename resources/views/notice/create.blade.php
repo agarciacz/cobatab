@@ -8,6 +8,15 @@
                     <h3 class="box-title">Crear Noticia</h3>
                 </div>
                 <div class="box-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="post" action="{{ route('form_created_notice') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -44,9 +53,7 @@
                                     <label for="description">{{ __('Descripción de la noticia') }}</label>
                                     <textarea id="description" name="description"
                                               class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}"
-                                              autofocus>
-                                            {{ old('description') }}
-                                        </textarea>
+                                              autofocus>{{ old('description') }}</textarea>
                                     @if ($errors->has('description'))
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('description') }}</strong>

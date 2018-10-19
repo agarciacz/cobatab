@@ -30,7 +30,7 @@ class NoticeController extends Controller
     public function save_notice(Request $request)
     {
         $validatedData = $this->validate($request, [
-            'title' => 'required|min:5',
+            'title' => 'required|min:5|unique:notices',
             'subtitle' => 'required',
             'description' => 'required',
             'cover_image' => 'required|mimes:jpeg,jpg,png',

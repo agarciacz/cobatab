@@ -8,14 +8,16 @@
                     <h3 class="box-title">Autorizar noticia</h3>
                 </div>
                 <div class="box-body">
-                    <form method="post">
+                    <form method="post" action="{{ route('form_authorized_notice') }}">
                         @csrf
+                        <input type="text" name="notice" id="notice" value="{{ $notice->id }}">
                         <label class="radio-inline">
-                            <input type="radio" name="is_authorized" id="is_authorized" value="1"> Autorizar
+                            <input type="radio" name="is_authorized" id="is_authorized" value="1"> Aprobada
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="is_authorized" id="is_authorized" value="0"> Denegar
+                            <input type="radio" name="is_authorized" id="is_authorized" value="0"> No aprovada
                         </label>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Guardar</button>
                     </form>
                 </div>
             </div>

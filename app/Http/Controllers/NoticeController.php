@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use PHPUnit\Framework\Constraint\IsFalse;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Notice;
 use App\ImageNotice;
+use App\NoticeIsAuthorized;
 
 
 class NoticeController extends Controller
 {
     public function listnotice()
     {
-        $notices = Notice::orderBy('created_at','asc')->get();
+        $notices = Notice::orderBy('created_at', 'asc')->get();
 
         $queries = array(
             'notices' => $notices,
@@ -92,10 +94,51 @@ class NoticeController extends Controller
         $images_notices = ImageNotice::where('notice', '=', $notices->id)->get();
 
         $queries = array(
-            'notice'=>$notices,
+            'notice' => $notices,
             'images' => $images_notices
         );
 
         return view('notice.authorized_notice', $queries);
+    }
+
+    public function save_authorized_notice(Request $request)
+    {
+        $validatedData = $this->validate($request, [
+            'is_authorized' => 'required',
+        ]);
+
+        $id_notice = $request->input('notice');
+        $notice_is_authorized = NoticeIsAuthorized::where('notice', '=', $id_notice)
+            ->where(function ($query) {
+                $query->where('is_authorized', '=', '0')
+                    ->orWhere('is_authorized', '=', '1');
+            })
+            ->first();
+        if ($notice_is_authorized == false) {
+            $authorized = new NoticeIsAuthorized();
+            $user = \Auth::user();
+            $authorized->notice = $request->input('notice');
+            $authorized->user = $user->user;
+            $authorized->is_authorized = $request->input('is_authorized');
+            $authorized->save();
+        } elseif ($notice_is_authorized == true) {
+            $authorized = NoticeIsAuthorized::where('notice', '=', $id_notice)->first();
+            $user = \Auth::user();
+            $authorized->user = $user->user;
+            $authorized->is_authorized = $request->input('is_authorized');
+            $authorized->save();
+        }
+
+
+        if ($authorized->is_authorized == 1) {
+            $message = "Noticia Aprobada";
+        } elseif ($authorized->is_authorized == 0) {
+            $message = "Noticia Rechazada";
+        }
+
+        return redirect()->route('view_list_notice')->with(array(
+            'message' => $message
+        ));
+
     }
 }

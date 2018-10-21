@@ -16,7 +16,7 @@ class CreateNoticeIsAuthorizeTable extends Migration
         Schema::create('notice_is_authorize', function (Blueprint $table) {
             $table->unsignedInteger('notice');
             $table->string('user', 15);
-            $table->boolean('is_authorized');
+            $table->boolean('is_authorized')->nullable();
             $table->timestamps();
             $table->foreign('notice')
                 ->references('id')->on('notices')

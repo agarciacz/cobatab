@@ -19,7 +19,7 @@ class Notice extends Model
 
     public function notice_is_authorized()
     {
-        return $this->hasMany('App\NoticeIsAuthorized');
+        return $this->hasOne('App\NoticeIsAuthorized', 'notice', 'id');
     }
 
     public function image_notice()

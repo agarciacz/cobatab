@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class NoticeIsAuthorized extends Model
 {
     protected $table = 'notice_is_authorize';
+    protected $primaryKey = 'notice';
 
     protected $fillable = [
         'notice', 'user', 'is_authorized'

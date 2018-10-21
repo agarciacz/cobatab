@@ -28,28 +28,30 @@
                 <div class="col-xs-12">
                     <h2 class="page-header">
                         <i class="fa fa-newspaper-o"></i> {{ $notice->title }}
-                        <small class="pull-right">Fecha de
-                            creación: {{ date('d-m-Y | h:i A', strtotime($notice->created_at)) }}</small>
+                        <small class="pull-right">
+                        </small>
                     </h2>
                 </div>
-                <!-- /.col -->
+            <!-- /.col -->
             </div>
-            <!-- info row -->
+        <!-- info row -->
             <div class="row invoice-info">
-                <!-- /.col -->
+            <!-- /.col -->
                 <div class="col-sm-6 invoice-col">
                     <address>
                         <strong>Subtitulo</strong><br>
-                        {{ $notice->subtitle }}
+                        {{ $notice->subtitle }}<br>
+                        <strong>Duración de la noticia</strong><br>
+                        {{ date("d-m-Y", strtotime($notice->start_date_publication))." - ".date("d-m-Y", strtotime($notice->end_date_publication)) }}
                     </address>
                 </div>
-                <!-- /.col -->
+            <!-- /.col -->
                 <div class="col-sm-6 invoice-col">
                     <address>
                         <strong>Noticia creada y redactada por</strong><br>
                         {{ $notice->users->name." ".$notice->users->paterno." ".$notice->users->materno }}<br>
-                        <strong>Duración de la noticia</strong><br>
-                        {{ date("d-m-Y", strtotime($notice->start_date_publication))." - ".date("d-m-Y", strtotime($notice->end_date_publication)) }}
+                        <strong>Fecha de creación:</strong> {{ date('d-m-Y | h:i A', strtotime($notice->created_at)) }}<br>
+                        <strong>Ultima Modificación:</strong> {{ date('d-m-Y | h:i A', strtotime($notice->updated_at)) }}<br>
                     </address>
                 </div>
                 <!-- /.col -->
@@ -67,12 +69,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <strong>Foto de portada</strong><br>
-                    <div style="text-align: center!important;">
                     @if(Storage::disk('images_notices')->has($notice->cover_image))
-                        <img class="img-responsive"
+                        <img class="img-responsive image-center img-thumbnail"
                              src="{{ route('imagesnotices', ['filename' => $notice->cover_image ])}}">
                     @endif
-                    </div>
                 </div>
             </div>
             <hr>

@@ -1,0 +1,12 @@
+.images-authorized {
+    float: left!important;
+    min-height: 250px!important;
+    max-height: 250px!important;
+    width: 300px!important;
+    margin: 10px 15px 0px 0px;
+}
+
+.image-center{
+    display:block;
+    margin:auto;
+}

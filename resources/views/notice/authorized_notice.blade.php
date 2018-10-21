@@ -10,7 +10,7 @@
                 <div class="box-body">
                     <form method="post" action="{{ route('form_authorized_notice') }}">
                         @csrf
-                        <input type="text" name="notice" id="notice" value="{{ $notice->id }}">
+                        <input type="hidden" name="notice" id="notice" value="{{ $notice->id }}">
                         <label class="radio-inline">
                             <input type="radio" name="is_authorized" id="is_authorized" value="1"> Aprobada
                         </label>

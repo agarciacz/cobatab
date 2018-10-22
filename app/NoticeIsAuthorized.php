@@ -17,4 +17,9 @@ class NoticeIsAuthorized extends Model
     {
         return $this->belongsTo('App\User', 'user');
     }
+
+    public function authorized()
+    {
+        return $this->belongsTo('App\Notice', 'notice', 'id');
+    }
 }

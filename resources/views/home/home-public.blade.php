@@ -60,67 +60,24 @@
 
         <div class="container">
             <div class="row">
+                @foreach($notices as $notice)
                 <div class="col-md-6">
                     <div class="thumbnail clearfix">
-                        <a href="#"><img class="img-responsive" src="{{ asset('img/img-offer-1.jpg') }}"
-                                         alt="Image"></a>
+                        @if(Storage::disk('images_notices')->has($notice->authorized->cover_image))
+                            <a href="#">
+                                <img class="img-responsive image-center img-thumbnail" src="{{ route('imagesnotices', ['filename' => $notice->authorized->cover_image ])}}" alt="Image">
+                            </a>
+                        @endif
 
                         <div class="caption">
-                            <h3><a href="#">Investment</a></h3>
+                            <h3><a href="#">{{$notice->authorized->title}}</a></h3>
 
-                            <p>Praesent dapibus eleifend aug eget sollicitudin velit malesuada Aliquam blandit diam
-                                feugiat
-                                tellus odio malesuada ex.</p>
+                            <p>{{$notice->authorized->subtitle}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="thumbnail clearfix">
-                        <a href="#"><img class="img-responsive" src="{{ asset('img/img-offer-2.jpg') }}"
-                                         alt="Image"></a>
-
-                        <div class="caption">
-                            <h3><a href="#">Planning</a></h3>
-
-                            <p>Praesent dapibus eleifend aug eget sollicitudin velit malesuada Aliquam blandit diam
-                                feugiat
-                                tellus odio malesuada ex.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="thumbnail clearfix">
-                        <a href="#"><img class="img-responsive" src="{{ asset('img/img-offer-3.jpg') }}"
-                                         alt="Image"></a>
-
-                        <div class="caption">
-                            <h3><a href="#">Analysis</a></h3>
-
-                            <p>Praesent dapibus eleifend aug eget sollicitudin velit malesuada Aliquam blandit diam
-                                feugiat
-                                tellus odio malesuada ex.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="thumbnail clearfix">
-                        <a href="#"><img class="img-responsive" src="{{ asset('img/img-offer-4.jpg') }}"
-                                         alt="Image"></a>
-
-                        <div class="caption">
-                            <h3><a href="#">Banking</a></h3>
-
-                            <p>Praesent dapibus eleifend aug eget sollicitudin velit malesuada Aliquam blandit diam
-                                feugiat
-                                tellus odio malesuada ex.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- .row -->
         </div>
         <!-- .container -->
     </section>

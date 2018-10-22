@@ -20,6 +20,7 @@
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Style CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app-admin.css') }}">
 </head>
 <body>
 <div id="main-wrapper">
@@ -44,7 +45,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="{{ asset('img/logo.png') }}" alt="" width="80px"
+                        <a class="navbar-brand" href="{{ route('view_index_cobatab') }}"><img src="{{ asset('img/logo.png') }}" alt="" width="80px"
                                                               height=""></a>
                     </div>
 
@@ -75,7 +76,7 @@
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right main-nav">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{{ route('view_index_cobatab') }}">Home</a></li>
                             <li><a href="#">Institución</a></li>
                             <li><a href="#">Alumnos</a></li>
                             <li><a href="#">Docentes</a></li>

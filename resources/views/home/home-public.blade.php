@@ -64,14 +64,13 @@
                 <div class="col-md-6">
                     <div class="thumbnail clearfix">
                         @if(Storage::disk('images_notices')->has($notice->authorized->cover_image))
-                            <a href="#">
+                            <a href="{{ route('view_notice_cobatab', ['notice' => $notice->authorized->title])  }}">
                                 <img class="img-responsive image-center img-thumbnail" src="{{ route('imagesnotices', ['filename' => $notice->authorized->cover_image ])}}" alt="Image">
                             </a>
                         @endif
 
                         <div class="caption">
-                            <h3><a href="#">{{$notice->authorized->title}}</a></h3>
-
+                            <h3><a href="{{ route('view_notice_cobatab', ['notice' => $notice->authorized->title])  }}">{{$notice->authorized->title}}</a></h3>
                             <p>{{$notice->authorized->subtitle}}</p>
                         </div>
                     </div>

@@ -13,6 +13,7 @@
 
 Route::get('/', 'CobatabController@index')->name('view_index_cobatab');
 Route::get('/imagesnotices/{filename}', 'NoticeController@getImages')->name('imagesnotices');
+Route::get('/noticia/{notice}', 'CobatabController@view_notice')->name('view_notice_cobatab');
 
 Auth::routes();
 

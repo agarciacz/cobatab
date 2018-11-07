@@ -140,4 +140,9 @@ class NoticeController extends Controller
         ));
 
     }
+
+    public function update_notice (Request $request){
+        return view('admin.notice.update');
+    }
+
 }

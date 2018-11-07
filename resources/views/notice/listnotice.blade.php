@@ -45,8 +45,9 @@
                                     @endif
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-warning btn-sm" title="Editar Noticia"><i
-                                                        class="fa fa-pencil-square-o"></i></a>
+                                            <a href="{{ route('view_update_notice', ['notice' => $notice->title]) }}" class="btn btn-warning btn-sm" title="Editar Noticia">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </a>
                                             <a class="btn btn-danger btn-sm" title="Eliminar Noticia"><i
                                                         class="fa fa-remove"></i></a>
                                             <a href="{{ route('view_authorized_notice', ['notice' => $notice->title]) }}"

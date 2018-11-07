@@ -25,4 +25,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/admin/noticia/created', 'NoticeController@save_notice')->name('form_created_notice');
     Route::get('/admin/noticia/autorizar/{notice}', 'NoticeController@authorized_notice')->name('view_authorized_notice');
     Route::post('/admin/noticia/autorizar/created', 'NoticeController@save_authorized_notice')->name('form_authorized_notice');
+    Route::get('/admin/noticia/actualizar/{notice}', 'NoticeController@update_notice')->name('view_update_notice');
 });

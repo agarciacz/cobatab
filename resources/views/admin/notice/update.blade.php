@@ -25,7 +25,7 @@
                                     <label for="title">{{ __('Titulo de la noticia') }}</label>
                                     <input id="title" name="title"
                                            class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}"
-                                           value="{{ old('title') }}" autofocus>
+                                           value="{{ $notice->title  }}" autofocus>
                                     @if ($errors->has('title'))
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('title') }}</strong>
@@ -38,7 +38,7 @@
                                     <label for="subtitle">{{ __('Subtitulo de la noticia') }}</label>
                                     <input id="subtitle" name="subtitle"
                                            class="form-control {{ $errors->has('subtitle') ? ' is-invalid' : '' }}"
-                                           value="{{ old('subtitle') }}" autofocus>
+                                           value="{{ $notice->subtitle }}" autofocus>
                                     @if ($errors->has('subtitle'))
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('subtitle') }}</strong>
@@ -53,7 +53,7 @@
                                     <label for="description">{{ __('Descripción de la noticia') }}</label>
                                     <textarea id="description" name="description"
                                               class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}"
-                                              autofocus>{{ old('description') }}</textarea>
+                                              autofocus>{{$notice->description}}</textarea>
                                     @if ($errors->has('description'))
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('description') }}</strong>
@@ -68,7 +68,7 @@
                                     <label for="start_date_publication">{{ __('Inicio de publicación') }}</label>
                                     <input id="start_date_publication" name="start_date_publication" type="date"
                                            class="form-control {{ $errors->has('start_date_publication') ? ' is-invalid' : '' }}"
-                                           value="{{ old('start_date_publication') }}" autofocus>
+                                           value="{{ $notice->start_date_publication }}" autofocus>
                                     @if ($errors->has('start_date_publication'))
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('start_date_publication') }}</strong>
@@ -81,7 +81,7 @@
                                     <label for="end_date_publication">{{ __('Fin de la publicación') }}</label>
                                     <input id="end_date_publication" name="end_date_publication" type="date"
                                            class="form-control {{ $errors->has('end_date_publication') ? ' is-invalid' : '' }}"
-                                           value="{{ old('end_date_publication') }}" autofocus>
+                                           value="{{ $notice->end_date_publication }}" autofocus>
                                     @if ($errors->has('end_date_publication'))
                                         <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('end_date_publication') }}</strong>
@@ -90,10 +90,18 @@
                                 </div>
                             </div>
                         </div>
+                        <hr></hr>
                         <div class="row">
                             <div class="col-md-12">
+                                <label for="cover_image">{{ __('Imagen de Portada') }}</label>
+                            @if(Storage::disk('images_notices')->has($notice->cover_image))
+                                    <img class="img-responsive image-center img-thumbnail"
+                                    src="{{ route('imagesnotices', ['filename' => $notice->cover_image ])}}">
+                                @endif
+                            </div>
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="cover_image">{{ __('Imagen de Portada') }}</label>
+                                    <label for="cover_image">Actualizar Imagen de Portada</label>
                                     <input id="cover_image" name="cover_image" type="file">
                                     @if ($errors->has('cover_image'))
                                         <span class="invalid-feedback" role="alert">
@@ -103,10 +111,25 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div class="row">
                             <div class="col-md-12">
+                                <label for="image">{{ __('Galeria de Imagenes') }}</label>
+                                @foreach($images as $image)
+                                    @if(Storage::disk('images_notices')->has($image->image))
+                                        <div class="img-delete">
+                                            <img class="img-responsive img-thumbnail images-authorized"
+                                            src="{{ route('imagesnotices', ['filename' => $image->image ])}}">
+                                            <div class="middle">
+                                                <a class="btn btn-danger "></a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="image">{{ __('Galeria de Imagenes') }}</label>
+                                    <label for="image">{{ __('Actualizar Galeria de Imagenes') }}</label>
                                     <input id="image" name="image[]" type="file" multiple>
                                     @if ($errors->has('image'))
                                         <span class="invalid-feedback" role="alert">

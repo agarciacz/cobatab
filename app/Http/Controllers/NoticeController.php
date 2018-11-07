@@ -141,8 +141,16 @@ class NoticeController extends Controller
 
     }
 
-    public function update_notice (Request $request){
-        return view('admin.notice.update');
+    public function update_notice ($title_notice){
+        $notices = Notice::where('title', '=', $title_notice)->firstOrFail();
+        $images_notices = ImageNotice::where('notice', '=', $notices->id)->get();
+
+        $queries = array(
+            'notice' => $notices,
+            'images' => $images_notices
+        );
+
+        return view('admin.notice.update', $queries);
     }
 
 }

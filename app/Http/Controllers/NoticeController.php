@@ -153,4 +153,14 @@ class NoticeController extends Controller
         return view('admin.notice.update', $queries);
     }
 
+    public function delete_image_gallery(Request $request, $id){
+        if ($request->ajax()){
+            $image = ImageNotice::find($id);
+            //Eliminar fichero
+            Storage::disk('images_notices')->delete($image->image);
+            //Eliminar imagen
+            $image->delete();
+        }
+    }
+
 }

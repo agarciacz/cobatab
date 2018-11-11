@@ -94,9 +94,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="cover_image">{{ __('Imagen de Portada') }}</label>
-                            @if(Storage::disk('images_notices')->has($notice->cover_image))
+                                @if(Storage::disk('images_notices')->has($notice->cover_image))
                                     <img class="img-responsive image-center img-thumbnail"
-                                    src="{{ route('imagesnotices', ['filename' => $notice->cover_image ])}}">
+                                         src="{{ route('imagesnotices', ['filename' => $notice->cover_image ])}}">
                                 @endif
                             </div>
                             <div class="col-md-12">
@@ -115,17 +115,58 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="image">{{ __('Galeria de Imagenes') }}</label>
-                                @foreach($images as $image)
-                                    @if(Storage::disk('images_notices')->has($image->image))
-                                        <div class="img-delete">
-                                            <img class="img-responsive img-thumbnail images-authorized"
-                                            src="{{ route('imagesnotices', ['filename' => $image->image ])}}">
-                                            <div class="middle">
-                                                <a class="btn btn-danger "></a>
+                                <div class="row">
+                                    @foreach($images as $image)
+                                        @if(Storage::disk('images_notices')->has($image->image))
+                                            <div class="col-md-2">
+                                                <div class="box box-primary direct-chat direct-chat-primary">
+                                                    <div class="box-header with-border">
+                                                        <h3 class="box-title"></h3>
+                                                        <div class="box-tools pull-right">
+                                                            <button type="button" class="btn btn-box-tool"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modal-confirm-delete-image-{{$image->id}}">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="box-body">
+                                                        <img class="img-responsive img-thumbnail images-authorized"
+                                                             src="{{ route('imagesnotices', ['filename' => $image->image ])}}">
+                                                        <p>{{ $image->image }}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                            <!-- Modal -->
+                                            <div class="modal modal-danger fade" id="modal-confirm-delete-image-{{$image->id}}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title">Eliminar imagen</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>¿Esta seguro de eliminar la imagen {{ $image->image }}
+                                                                ?</p>
+                                                            <input id="url-delete-image" type="hidden" value="{{ route('delete-image-gallery', ['id' => $image->id]) }}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline pull-left"
+                                                                    data-dismiss="modal">Cerrar
+                                                            </button>
+                                                            <button id="btn-confirm" onclick="selectImage( '{{$image->id}}' )"
+                                                                    type="button" class="btn btn-outline">Confirmar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Final del modal-->
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -146,4 +187,26 @@
             </div>
         </section>
     </div>
+@endsection
+@section('scrips')
+    <script>
+        $(document).ready(function () {
+
+        });
+
+        function selectImage(id) {
+            var url = $('#url-delete-image').val();
+            var key = id;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: 'id='+key,
+                headers: {'X-CSRFToken': $('meta[name="token"]').attr('content')},
+                success: function (datos) {
+                    location.reload();
+                }
+            });
+        }
+
+    </script>
 @endsection

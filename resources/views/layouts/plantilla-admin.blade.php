@@ -157,5 +157,6 @@
 <script src="{{ asset('js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('js/demo.js') }}"></script>
+@yield('scrips')
 </body>
 </html>

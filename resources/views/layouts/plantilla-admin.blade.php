@@ -61,7 +61,8 @@
                                 <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{ Auth::user()->name." ".Auth::user()->paterno." ".Auth::user()->materno }} - Web Developer
+                                    {{ Auth::user()->name." ".Auth::user()->paterno." ".Auth::user()->materno }} - Web
+                                    Developer
                                     <small>{{ Auth::user()->email }}</small>
                                 </p>
                             </li>
@@ -72,10 +73,11 @@
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
-                                    onclick="event.preventDefault(); document.getElementById('logout').submit();">
+                                       onclick="event.preventDefault(); document.getElementById('logout').submit();">
                                         Salir
                                     </a>
-                                    <form id="logout" action="{{ route('logout') }}" method="post" style="display: none">
+                                    <form id="logout" action="{{ route('logout') }}" method="post"
+                                          style="display: none">
                                         @csrf
                                     </form>
                                 </div>
@@ -106,9 +108,10 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class=""><a href="{{ route('view_create_notice') }}"><i class="fa fa-circle-o"></i>Crear</a></li>
-                        <li class=""><a href="{{ route('view_list_notice') }}"><i class="fa fa-circle-o"></i>Ver</a></li>
-                        <li class=""><a href="#"><i class="fa fa-circle-o"></i>Autorizar</a></li>
+                        <li class=""><a href="{{ route('view_create_notice') }}"><i class="fa fa-circle-o"></i>Crear</a>
+                        </li>
+                        <li class=""><a href="{{ route('view_list_notice') }}"><i class="fa fa-circle-o"></i>Ver</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -118,9 +121,28 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Carrousel</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Contenido de la Pagina</a></li>
+                    <ul class="treeview-menu" style="display: none;">
+                        <li class="treeview menu-open">
+                            <a href="#"><i class="fa fa-circle-o"></i> Carrousel
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                  </span>
+                            </a>
+                            <ul class="treeview-menu" style="display: block;">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Crear</a></li>
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Ver</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview menu-open">
+                            <a href="#"><i class="fa fa-circle-o"></i> Pagina
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                  </span>
+                            </a>
+                            <ul class="treeview-menu" style="display: block;">
+                                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
             </ul>

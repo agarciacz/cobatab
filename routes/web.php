@@ -27,4 +27,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/admin/noticia/autorizar/created', 'NoticeController@save_authorized_notice')->name('form_authorized_notice');
     Route::get('/admin/noticia/actualizar/{notice}', 'NoticeController@update_notice')->name('view_update_notice');
     Route::get('/delete/image/gallery/{id}', 'NoticeController@delete_image_gallery')->name('delete-image-gallery');
+    Route::post('/admin/noticia/updated/{id}', 'NoticeController@save_updated')->name('form_updated_notice');
 });

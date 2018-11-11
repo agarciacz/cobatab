@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class NoticeController extends Controller
         $cover_image = $request->file('cover_image');
         if ($cover_image) {
             $cover_image_path = time() . $cover_image->getClientOriginalName();
-            \Storage::disk('images_notices')->put($cover_image_path, \File::get($cover_image));
+            Storage::disk('images_notices')->put($cover_image_path, \File::get($cover_image));
             $notice->cover_image = $cover_image_path;
         }
 
@@ -61,7 +62,7 @@ class NoticeController extends Controller
         if ($images) {
             foreach ($images as $image) {
                 $images_path = time() . $image->getClientOriginalName();
-                \Storage::disk('images_notices')->put($images_path, \File::get($image));
+                Storage::disk('images_notices')->put($images_path, \File::get($image));
                 //$notice->cover_image = $images_path;
                 $this->save_images_notices($images_path, $notice);
             }
@@ -141,7 +142,8 @@ class NoticeController extends Controller
 
     }
 
-    public function update_notice ($title_notice){
+    public function update_notice($title_notice)
+    {
         $notices = Notice::where('title', '=', $title_notice)->firstOrFail();
         $images_notices = ImageNotice::where('notice', '=', $notices->id)->get();
 
@@ -153,8 +155,70 @@ class NoticeController extends Controller
         return view('admin.notice.update', $queries);
     }
 
-    public function delete_image_gallery(Request $request, $id){
-        if ($request->ajax()){
+    public function save_updated($id, Request $request)
+    {
+        $notice = Notice::findOrFail($id);
+        //Validacion de los inputs
+        $validatedData = \Validator::make($request->all(), [
+            'title' => ['required',
+                Rule::unique('notices')->ignore($notice->title, 'title')
+            ],
+            'subtitle' => 'required',
+            'description' => 'required',
+            'cover_image' => 'mimes:jpeg,jpg,png',
+            'start_date_publication' => 'required',
+            'end_date_publication' => 'required',
+        ]);
+        //Verifica si hay algun error en la validación
+        if ($validatedData->fails()) {
+            return redirect()->back()->withInput()->withErrors($validatedData->errors());
+        }
+
+        $notice->title = $request->input('title');
+        $notice->subtitle = $request->input('subtitle');
+        $notice->description = $request->input('description');
+        //Subir cover_image
+        $cover_image = $request->file('cover_image');
+        if ($cover_image) {
+            //Eliminar fichero
+            Storage::disk('images_notices')->delete($notice->cover_image);
+            //Guardar nuevo fichero
+            $cover_image_path = time() . $cover_image->getClientOriginalName();
+            Storage::disk('images_notices')->put($cover_image_path, \File::get($cover_image));
+            $notice->cover_image = $cover_image_path;
+        }
+        //Fin de subir cover image
+        $notice->start_date_publication = $request->input('start_date_publication');
+        $notice->end_date_publication = $request->input('end_date_publication');
+        $notice->update();
+
+        $images = $request->file('image');
+        if ($images) {
+            foreach ($images as $image) {
+                $images_path = time() . $image->getClientOriginalName();
+                Storage::disk('images_notices')->put($images_path, \File::get($image));
+                //$notice->cover_image = $images_path;
+                $this->save_images_notices($images_path, $notice);
+            }
+        }
+
+        return redirect()->route('view_list_notice')->with(array(
+            'message' => 'Noticia actualizada correctamente!!'
+        ));
+
+    }
+
+    /* public function save_images_notices($image, $id_notice)
+     {
+         ImageNotice::create([
+             'notice' => $id_notice->id,
+             'image' => $image
+         ]);
+     }*/
+
+    public function delete_image_gallery(Request $request, $id)
+    {
+        if ($request->ajax()) {
             $image = ImageNotice::find($id);
             //Eliminar fichero
             Storage::disk('images_notices')->delete($image->image);

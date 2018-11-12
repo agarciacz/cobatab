@@ -6,36 +6,36 @@
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            @php
+                $i = 0;
+                $id = 0;
+            @endphp
+            @foreach($carousels as $carousel)
+                <li data-target="#carousel-example-generic"
+                    data-slide-to="@php echo $i++; @endphp"
+                    id="@php echo "indicador".$id++; @endphp"
+                    class="">
+                </li>
+            @endforeach
         </ol>
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img src="{{ asset('img/img4.jpg') }}" alt="...">
-                <div class="carousel-caption">
-                    <h1 id="title">Alumnos</h1>
-                    <h2></h2>
+            @php
+                $iditem = 0;
+            @endphp
+            @foreach($carousels as $carousel)
+                <div id="@php echo "item".$iditem++; @endphp" class="item">
+                    @if(Storage::disk('carousel')->has($carousel->image))
+                        <img src="{{ route('image_carousel', ['filename' => $carousel->image])}}"
+                             alt="{{ $carousel->title }}.">
+                    @endif
+                    <div class="carousel-caption">
+                        <h1 id="title">{{ $carousel->title }}</h1>
+                        <h2>{{ $carousel->description }}</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <img src="{{ asset('img/img6.jpg') }}" alt="...">
-                <div class="carousel-caption">
-                    <h1 id="title">Maestros</h1>
-                    <h2></h2>
-                </div>
-            </div>
-            <div class="item">
-                <img src="{{ asset('img/img7.jpg') }}" alt="...">
-                <div class="carousel-caption">
-                    <h1 id="title">Libros</h1>
-                    <h2>asdjasduiauisdi asdjasduiasuidasdasdasdasduhasdasdasasduisdbasdj
-                        hiasdjhiasdjiasdjiasdhisdasdsdsdsdauisdaasduisdasaddd
-                        dddddddddddddddddddddddddddddddddddddddui</h2>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <!-- Controls -->
@@ -61,20 +61,23 @@
         <div class="container">
             <div class="row">
                 @foreach($notices as $notice)
-                <div class="col-md-6">
-                    <div class="thumbnail clearfix">
-                        @if(Storage::disk('images_notices')->has($notice->authorized->cover_image))
-                            <a href="{{ route('view_notice_cobatab', ['notice' => $notice->authorized->title])  }}">
-                                <img class="img-responsive image-center img-thumbnail" src="{{ route('imagesnotices', ['filename' => $notice->authorized->cover_image ])}}" alt="Image">
-                            </a>
-                        @endif
-
-                        <div class="caption">
-                            <h3><a href="{{ route('view_notice_cobatab', ['notice' => $notice->authorized->title])  }}">{{$notice->authorized->title}}</a></h3>
-                            <p>{{$notice->authorized->subtitle}}</p>
+                    <div class="col-md-3">
+                        <div class="thumbnail clearfix">
+                            @if(Storage::disk('images_notices')->has($notice->authorized->cover_image))
+                                <a href="{{ route('view_notice_cobatab', ['notice' => $notice->authorized->title])  }}">
+                                    <img class="img-responsive image-center img-thumbnail images-notices"
+                                         src="{{ route('imagesnotices', ['filename' => $notice->authorized->cover_image ])}}"
+                                         alt="Image">
+                                </a>
+                            @endif
+                            <div class="caption">
+                                <h3>
+                                    <a href="{{ route('view_notice_cobatab', ['notice' => $notice->authorized->title])  }}">{{$notice->authorized->title}}</a>
+                                </h3>
+                                <p>{{$notice->authorized->subtitle}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
@@ -94,11 +97,18 @@
             <!-- row -->
             <div class="row">
                 <div class="col-md-12">
-                    <img src="{{ asset('img/calendario2018-2019.jpg') }}" class="img-responsive" alt="Calendario Escolar">
+                    <img src="{{ asset('img/calendario2018-2019.jpg') }}" class="img-responsive"
+                         alt="Calendario Escolar">
                 </div>
             </div>
         </div>
     </section>
-
-
+@endsection
+@section('scrips')
+    <script>
+        $(document).ready(function () {
+            $("#indicador0").addClass('active');
+            $("#item0").addClass('active');
+        });
+    </script>
 @endsection

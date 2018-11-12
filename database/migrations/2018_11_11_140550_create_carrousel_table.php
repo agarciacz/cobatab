@@ -18,7 +18,7 @@ class CreateCarrouselTable extends Migration
             $table->string('image',100);
             $table->string('title',45);
             $table->longText('description');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
     }

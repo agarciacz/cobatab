@@ -123,14 +123,14 @@
                     </a>
                     <ul class="treeview-menu" style="display: none;">
                         <li class="treeview menu-open">
-                            <a href="#"><i class="fa fa-circle-o"></i> Carrousel
+                            <a href="#"><i class="fa fa-circle-o"></i> Carousel
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                   </span>
                             </a>
                             <ul class="treeview-menu" style="display: block;">
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Crear</a></li>
-                                <li><a href="#"><i class="fa fa-circle-o"></i> Ver</a></li>
+                                <li><a href="{{ route('view_list_carousel') }}"><i class="fa fa-circle-o"></i> Ver</a></li>
+                                <li><a href="{{ route('view_create_carousel') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
                             </ul>
                         </li>
                         <li class="treeview menu-open">

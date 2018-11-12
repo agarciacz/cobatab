@@ -45,8 +45,9 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="{{ route('view_index_cobatab') }}"><img src="{{ asset('img/logo.png') }}" alt="" width="80px"
-                                                              height=""></a>
+                        <a class="navbar-brand" href="{{ route('view_index_cobatab') }}">
+                            <img src="{{ asset('img/logo.png') }}" alt="" width="80px" height="">
+                        </a>
                     </div>
 
 
@@ -199,5 +200,6 @@
 <script src="{{asset('js/mobile-menu.js')}}"></script>
 <script src="{{asset('js/flexSlider/jquery.flexslider-min.js')}}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
+@yield('scrips')
 </body>
 </html>

@@ -80,18 +80,18 @@
                             <li><a href="{{ route('view_index_cobatab') }}">Home</a></li>
                             <li><a href="#">Institución</a></li>
                             <li><a href="#">Alumnos</a></li>
+                            <li><a href="#">Padres</a></li>
                             <li><a href="#">Docentes</a></li>
                             <li><a href="#">Noticias</a></li>
-                            <li class="dropdown "><a href="#" data-toggle="dropdown" class="dropdown-toggle">Trámites
+                            <li class="dropdown "><a href="#" data-toggle="dropdown" class="dropdown-toggle">Ventanilla Unica
                                     <span><i class="fa fa-angle-down"></i></span></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <ul>
-                                            <li><a href="#">Awesome Features</a></li>
-                                            <li><a href="#">Clean Interface</a></li>
-                                            <li><a href="#">Available Possibilities</a></li>
-                                            <li><a href="#">Responsive Design</a></li>
-                                            <li><a href="#">Pixel Perfect Graphics</a></li>
+                                            <li><a href="#">Constancia de Estudio</a></li>
+                                            <li><a href="#">Constancia con promedio</a></li>
+                                            <li><a href="#">Certificado de Estudio</a></li>
+                                            <li><a href="#">Conducta de alumnos</a></li>
                                         </ul>
                                     </li>
                                 </ul>

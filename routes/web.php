@@ -46,3 +46,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/alumno/actualizar/{matricula}', 'AlumnoController@update_student')->name('view_update_student');
     Route::post('/admin/alumno/save/update/{matricula}', 'AlumnoController@save_update_student')->name('form_update_student');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin/padres/lista', 'PadreController@list_father')->name('view_list_father');
+    Route::get('/admin/padres/crear', 'PadreController@create_father')->name('view_create_father');
+    Route::post('/admin/padres/save/create', 'PadreController@save_create_father')->name('form_create_father');
+    Route::get('/admin/padres/actualizar/{curp}', 'PadreController@update_father')->name('view_update_father');
+    Route::post('/admin/padres/save/update/{curp}', 'PadreController@save_update_father')->name('form_update_father');
+});

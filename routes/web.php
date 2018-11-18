@@ -38,3 +38,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/carousel/actualizar/{id}', 'CarrouselController@update_carousel')->name('view_update_carousel');
     Route::post('/admin/carousel/update/{id}', 'CarrouselController@save_update_carousel')->name('form_update_carousel');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin/alumno/lista', 'AlumnoController@list_student')->name('view_list_student');
+    Route::get('/admin/alumno/crear', 'AlumnoController@create_student')->name('view_create_student');
+    Route::post('/admin/alumno/save/create', 'AlumnoController@save_create_student')->name('form_create_student');
+    Route::get('/admin/alumno/actualizar/{matricula}', 'AlumnoController@update_student')->name('view_update_student');
+    Route::post('/admin/alumno/save/update/{matricula}', 'AlumnoController@save_update_student')->name('form_update_student');
+});

@@ -19,7 +19,7 @@ class CreateAlumnosTable extends Migration
             $table->string('names',45);
             $table->string('paterno',20);
             $table->string('materno',20)->nullable();
-            $table->boolean('sex');
+            $table->string('sex',1);
             $table->timestamps();
         });
     }

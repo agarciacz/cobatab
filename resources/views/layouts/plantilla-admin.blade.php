@@ -94,7 +94,7 @@
         <section class="sidebar">
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">NAVEGACIÓN</li>
+                <li class="header">PAGINA</li>
                 <li>
                     <a href="{{ route('home') }}">
                         <i class="fa fa-th"></i> <span>Inicio</span>
@@ -142,6 +142,23 @@
                             <ul class="treeview-menu" style="display: block;">
                                 <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
                             </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header">SERVICIOS</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Alumnos</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="{{ route('view_list_student') }}"><i class="fa fa-circle-o"></i>Ver</a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('view_create_student') }}"><i class="fa fa-circle-o"></i>Crear</a>
                         </li>
                     </ul>
                 </li>

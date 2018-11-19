@@ -19,7 +19,7 @@ Route::get('/noticia/{notice}', 'CobatabController@view_notice')->name('view_not
 Auth::routes();
 
 Route::get('/admin/home', 'HomeController@index')->name('home');
-
+//Rutas de noticias | administrador
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/noticia/lista', 'NoticeController@listnotice')->name('view_list_notice');
     Route::get('/admin/noticia/crear', 'NoticeController@create')->name('view_create_notice');
@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/delete/image/gallery/{id}', 'NoticeController@delete_image_gallery')->name('delete-image-gallery');
     Route::post('/admin/noticia/updated/{id}', 'NoticeController@save_updated')->name('form_updated_notice');
 });
-
+//Rutas del carousel | administrador
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/carousel/lista', 'CarrouselController@list_carousel')->name('view_list_carousel');
     Route::get('/admin/carousel/crear', 'CarrouselController@create_carousel')->name('view_create_carousel');
@@ -38,15 +38,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/carousel/actualizar/{id}', 'CarrouselController@update_carousel')->name('view_update_carousel');
     Route::post('/admin/carousel/update/{id}', 'CarrouselController@save_update_carousel')->name('form_update_carousel');
 });
-
+//Rutas de alumnos | administrador
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/alumno/lista', 'AlumnoController@list_student')->name('view_list_student');
     Route::get('/admin/alumno/crear', 'AlumnoController@create_student')->name('view_create_student');
     Route::post('/admin/alumno/save/create', 'AlumnoController@save_create_student')->name('form_create_student');
     Route::get('/admin/alumno/actualizar/{matricula}', 'AlumnoController@update_student')->name('view_update_student');
     Route::post('/admin/alumno/save/update/{matricula}', 'AlumnoController@save_update_student')->name('form_update_student');
+    Route::post('/admin/alumno/vincular/save/{matricula}', 'AlumnoController@save_link_students_witch_parents')->name('form_link_student_with_parents');
+    Route::get('/admin/alumno/drop/link/{id}', 'AlumnoController@delete_link_students_witch_parents')->name('drop_link_student_with_parents');
+    Route::get('/admin/alumno/visializar/informacion/{matricula}', 'AlumnoController@information_student')->name('information_student');
+    Route::get('/admin/alumno/activar/tutor/{id}', 'AlumnoController@active_is_tutor')->name('active_is_tutor');
+    Route::get('/admin/alumno/desactivar/tutor/{id}', 'AlumnoController@disable_is_tutor')->name('disable_is_tutor');
 });
-
+//Rutas de padres | administrador
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/padres/lista', 'PadreController@list_father')->name('view_list_father');
     Route::get('/admin/padres/crear', 'PadreController@create_father')->name('view_create_father');

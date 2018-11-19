@@ -42,6 +42,9 @@
                                     @endswitch
                                     <td>
                                         <div class="btn-group">
+                                            <a href="{{ route('information_student', ['matricula' => $student->matricula]) }}" class="btn btn-primary btn-sm" title="Información del alumno">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
                                             <a href="{{ route('view_update_student', ['matricula' => $student->matricula]) }}" class="btn btn-warning btn-sm" title="Editar Alumno">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </a>

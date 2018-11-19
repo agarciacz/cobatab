@@ -19,6 +19,6 @@ class AlumnoPadre extends Model
 
     public function padres()
     {
-        return $this->belongsTo('App\Padre', 'curp', 'padre');
+        return $this->belongsTo('App\Padre', 'padre','curp');
     }
 }

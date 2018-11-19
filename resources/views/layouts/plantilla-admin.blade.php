@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="{{ asset('librerias/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('fonts/font-awesome/css/font-awesome.min.css') }}">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('librerias/select2/dist/css/select2.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -206,12 +206,10 @@
 <script src="{{ asset('librerias/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('librerias/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('librerias/select2/dist/js/select2.full.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('js/demo.js') }}"></script>
 @yield('scrips')
 </body>
 </html>

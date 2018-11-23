@@ -22,7 +22,7 @@ class CobatabController extends Controller
             'notices' => $notices,
             'carousels' => $carousels,
         );
-
+                        //Nombre de la carpeta.nombre del archivo
         return view('home.home-public', $queries);
     }
 

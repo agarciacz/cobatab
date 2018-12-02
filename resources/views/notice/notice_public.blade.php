@@ -16,15 +16,32 @@
             <div class="row">
                 <div class="col-md-12">
                     @if(Storage::disk('images_notices')->has($notice->authorized->cover_image))
-                        <img class="img-responsive image-center img-thumbnail"
+                        <img class="img-responsive image-center img-thumbnail" height="350px" width="700px"
                              src="{{ route('imagesnotices', ['filename' => $notice->authorized->cover_image ])}}"
                              alt="Image">
                     @endif
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <p>{{ $notice->description }}</p>
+                    <h3>{{ $notice->description }}</h3>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="text-center">Galeria de imagenes</h4>
+                </div>
+                <div class="col-md-12">
+                    @foreach($images as $image)
+                        @if(Storage::disk('images_notices')->has($image->image))
+                            <div class="col-md-3">
+                                <img class="img-responsive img-thumbnail images-authorized"
+                                     src="{{ route('imagesnotices', ['filename' => $image->image ])}}">
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>

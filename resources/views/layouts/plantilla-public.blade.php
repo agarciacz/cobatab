@@ -78,13 +78,28 @@
 
                         <ul class="nav navbar-nav navbar-right main-nav">
                             <li><a href="{{ route('view_index_cobatab') }}">Home</a></li>
-                            <li><a href="#">Institución</a></li>
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                    Institución<span><i class="fa fa-angle-down"></i></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="#">Organigrama</a></li>
+                                            <li><a href="#">Mensaje del Director</a></li>
+                                            <li><a href="#">Misión y visión</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                             <li><a href="#">Alumnos</a></li>
                             <li><a href="#">Padres</a></li>
                             <li><a href="#">Docentes</a></li>
                             <li><a href="#">Noticias</a></li>
-                            <li class="dropdown "><a href="#" data-toggle="dropdown" class="dropdown-toggle">Ventanilla Unica
-                                    <span><i class="fa fa-angle-down"></i></span></a>
+                            <li class="dropdown ">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                    Ventanilla Unica<span><i class="fa fa-angle-down"></i></span>
+                                </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <ul>

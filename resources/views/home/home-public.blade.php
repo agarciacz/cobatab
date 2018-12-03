@@ -144,6 +144,26 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="service-item">
+                        <div class="icon1">
+                            <a href="{{route('view_create_mailbox_cobatab')}}"><i class="fa fa-inbox fa-flip-horizontal"></i></a>
+                        </div>
+                        <h4>Buzon Plantel 28</h4>
+                        <p>Quejas, denuncias y felicitaciones.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+
+                </div>
+            </div>
         </div>
     </section>
     <section class="x-services ptb-100 ">

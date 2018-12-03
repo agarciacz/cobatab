@@ -15,6 +15,8 @@ Route::get('/', 'CobatabController@index')->name('view_index_cobatab');
 Route::get('/imagesnotices/{filename}', 'NoticeController@getImages')->name('imagesnotices');
 Route::get('/image/carousel/{filename}', 'CarrouselController@getImages')->name('image_carousel');
 Route::get('/noticia/{notice}', 'CobatabController@view_notice')->name('view_notice_cobatab');
+Route::get('/buzon', 'MailboxController@create_mailbox')->name('view_create_mailbox_cobatab');
+Route::post('/buzon/send', 'MailboxController@save_create_mailbox')->name('form_create_mailbox_cobatab');
 
 Auth::routes();
 

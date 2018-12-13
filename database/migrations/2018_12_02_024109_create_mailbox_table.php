@@ -20,6 +20,7 @@ class CreateMailboxTable extends Migration
             $table->string('telephone',12)->nullable(true);
             $table->string('category_mailbox');
             $table->longText('description');
+            $table->boolean('status')->default(1);
             $table->timestamps();
 
             $table->foreign('category_mailbox')

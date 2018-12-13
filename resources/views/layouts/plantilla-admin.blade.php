@@ -178,6 +178,22 @@
                         </li>
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-envelope"></i> <span>Buzón</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="{{ route('view_list_mailbox') }}"><i class="fa fa-circle-o"></i>Ver</a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('view_create_father') }}"><i class="fa fa-circle-o"></i>Historial</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->

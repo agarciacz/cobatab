@@ -43,4 +43,22 @@ class MailboxController extends Controller
             'message' => 'Mensaje enviado!!'
         ));
     }
+
+    function list_mailbox(){
+        $messages = Mailbox::orderBy('created_at', 'asc')->get();
+
+        $queries = array(
+            'messages' => $messages,
+        );
+        return view('admin.mailbox.index', $queries);
+    }
+
+    function detail_mailbox($id){
+        $message = Mailbox::where('id', '=', $id)->firstOrFail();
+
+        $queries = array(
+            'message' => $message,
+        );
+        return view('admin.mailbox.detail', $queries);
+    }
 }

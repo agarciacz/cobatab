@@ -61,3 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/padres/actualizar/{curp}', 'PadreController@update_father')->name('view_update_father');
     Route::post('/admin/padres/save/update/{curp}', 'PadreController@save_update_father')->name('form_update_father');
 });
+//Rutas de Mailbox | administrador
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin/buzon/lista', 'MailboxController@list_mailbox')->name('view_list_mailbox');
+    Route::get('/admin/buzon/mensaje/{id}', 'MailboxController@detail_mailbox')->name('view_detail_mailbox');
+});

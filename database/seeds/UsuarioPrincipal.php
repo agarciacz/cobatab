@@ -20,6 +20,7 @@ class UsuarioPrincipal extends Seeder
             'user' => 'agarcia',
             'email' => 'alvaro.gcruz@gmail.com',
             'password' => Hash::make('administrador'),
+            'category' => 'A',
         ]);
 
         $this->command->info('Usuario principal creado');

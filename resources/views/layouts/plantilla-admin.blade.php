@@ -61,8 +61,7 @@
                                 <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{ Auth::user()->name." ".Auth::user()->paterno." ".Auth::user()->materno }} - Web
-                                    Developer
+                                    {{ Auth::user()->name." ".Auth::user()->paterno." ".Auth::user()->materno }}
                                     <small>{{ Auth::user()->email }}</small>
                                 </p>
                             </li>
@@ -129,8 +128,10 @@
                                   </span>
                             </a>
                             <ul class="treeview-menu" style="display: block;">
-                                <li><a href="{{ route('view_list_carousel') }}"><i class="fa fa-circle-o"></i> Ver</a></li>
-                                <li><a href="{{ route('view_create_carousel') }}"><i class="fa fa-circle-o"></i> Crear</a></li>
+                                <li><a href="{{ route('view_list_carousel') }}"><i class="fa fa-circle-o"></i> Ver</a>
+                                </li>
+                                <li><a href="{{ route('view_create_carousel') }}"><i class="fa fa-circle-o"></i>
+                                        Crear</a></li>
                             </ul>
                         </li>
                         <li class="treeview menu-open">
@@ -191,6 +192,22 @@
                         </li>
                         <li class="">
                             <a href="{{ route('view_create_father') }}"><i class="fa fa-circle-o"></i>Historial</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-user"></i> <span>Usuarios</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="{{ route('view_list_user') }}"><i class="fa fa-circle-o"></i>Ver</a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('view_create_user') }}"><i class="fa fa-circle-o"></i>Crear</a>
                         </li>
                     </ul>
                 </li>

@@ -66,3 +66,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/buzon/lista', 'MailboxController@list_mailbox')->name('view_list_mailbox');
     Route::get('/admin/buzon/mensaje/{id}', 'MailboxController@detail_mailbox')->name('view_detail_mailbox');
 });
+
+//Rutas de Usuarios | administrador
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin/usuario/lista', 'UsuarioController@list_user')->name('view_list_user');
+    Route::get('/admin/usuario/crear', 'UsuarioController@create_user')->name('view_create_user');
+    Route::post('/admin/usuario/save/create', 'UsuarioController@save_create_user')->name('form_create_user');
+});

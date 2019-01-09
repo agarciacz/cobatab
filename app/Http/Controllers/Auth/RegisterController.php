@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'user' => 'required|string|max:15|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'category' => 'required|string',
         ]);
     }
 
@@ -73,6 +74,7 @@ class RegisterController extends Controller
             'user' => $data['user'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'category' => $data['category'],
         ]);
     }
 }
